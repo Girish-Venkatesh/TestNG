@@ -1,0 +1,67 @@
+/*
+ * BeforeSuite
+ * BeforeTest
+ * BeforeClass
+ * 
+ * BeforeMethod
+ * Test1
+ * AfetrMethod
+ * 
+ * BeforeMethod
+ * Test2
+ * AfterMethod
+ * 
+ * AfterClass
+ * AfterTest
+ * AfterSuite 
+ * 
+ */
+ 
+ 
+ while running xml file, class not found exception
+ include package name also:
+ ex : <class name="Package1.Sample2" />
+ 
+ in command prompt to run testng
+ java -classpath .:testng-5.10-jdk15.jar org.testng.TestNG -groups groupB -testclass SampleTest
+ 
+ run as testng suite comes in package editor, option not comes in editor to right click and run
+ 
+ beforegroup and aftergroup annotation not executes if there no groups tests
+ beforemethod, beforeclass and aftermethod, afterclass annotation not executes if there no @test methods
+ 
+ beforetest, beforesuite and aftertest, aftertest annotaion executes irresspective of @Test presence
+ 
+ in testng.xml, groups tag must have run tag
+ ex: <groups>
+			<run>
+			<include name = "group2"> </include>
+			<exclude name="group1"></exclude>
+			</run>
+		</groups>
+		
+methods tag should be inside class tag
+ex : <classes>
+			<class name="Package1.Sample4" />
+			<methods>
+
+				<include name="Test1">
+				</include>
+
+			</methods>
+		</classes>
+		
+		
+if we want to run the dependent testcase if its parent testcase failed, use alwaysrun = true 
+
+even if we use alwaysrun = true, below methods will not execute
+beforegroup and aftergroup annotation not executes if there no groups tests
+beforemethod, beforeclass and aftermethod, afterclass annotation not executes if there no @test methods
+
+classlevel enabled = false
+all before and after annotation methods will not run, but @test methods will run.
+to avoid @test execution, we should explistly specify enabled = false for @test methods
+
+methodlevel enabled = false
+only oartuicular method will not run
+ 		
